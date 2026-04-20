@@ -1,0 +1,73 @@
+/* ═══════════════════════════════════════════════════
+   PipelineTab.module.css
+═══════════════════════════════════════════════════ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Stage block ──────────────────────────────────── */
+.stageBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stageLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stageDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.stageFile {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  color: var(--muted2);
+  letter-spacing: 1px;
+  margin-left: 4px;
+}
+
+/* ── Pipeline row — horizontal flex of steps + arrows ── */
+.pipeline {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+/* ── Image areas ──────────────────────────────────── */
+.imgBody {
+  padding: 16px;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .pipeline {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .twoCol {
+    grid-template-columns: 1fr;
+  }
+}

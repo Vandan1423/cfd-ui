@@ -1,0 +1,132 @@
+/* ═══════════════════════════════════════════════════
+   Modal.module.css
+═══════════════════════════════════════════════════ */
+
+/* ── Backdrop ─────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(1, 8, 20, 0.92);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  animation: backdropIn 0.2s ease both;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Content box ──────────────────────────────────── */
+.content {
+  position: relative;
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: contentIn 0.3s var(--ease-out) both;
+}
+
+@keyframes contentIn {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/* ── Close button ─────────────────────────────────── */
+.closeBtn {
+  position: absolute;
+  top: -36px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: opacity 0.2s ease;
+}
+
+.closeBtn:hover { opacity: 0.7; }
+
+.closeIcon {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.closeLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Image wrapper ────────────────────────────────── */
+.imgWrap {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border2);
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 40px 80px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(0, 212, 255, 0.06);
+}
+
+.img {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+}
+
+/* ── Corner bracket decorations ───────────────────── */
+.cornerTL, .cornerTR,
+.cornerBL, .cornerBR {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.cornerTL {
+  top: 10px; left: 10px;
+  border-top: 2px solid var(--cyan);
+  border-left: 2px solid var(--cyan);
+  border-radius: 2px 0 0 0;
+}
+
+.cornerTR {
+  top: 10px; right: 10px;
+  border-top: 2px solid var(--cyan);
+  border-right: 2px solid var(--cyan);
+  border-radius: 0 2px 0 0;
+}
+
+.cornerBL {
+  bottom: 10px; left: 10px;
+  border-bottom: 2px solid var(--cyan);
+  border-left: 2px solid var(--cyan);
+  border-radius: 0 0 0 2px;
+}
+
+.cornerBR {
+  bottom: 10px; right: 10px;
+  border-bottom: 2px solid var(--cyan);
+  border-right: 2px solid var(--cyan);
+  border-radius: 0 0 2px 0;
+}
+
+/* ── Caption ──────────────────────────────────────── */
+.caption {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-align: center;
+}

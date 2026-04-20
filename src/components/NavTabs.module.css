@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════════
+   NavTabs.module.css
+   Depends on CSS variables in index.css
+═══════════════════════════════════════════════════ */
+
+/* ── Outer nav wrapper ────────────────────────────── */
+.nav {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  background: rgba(7, 21, 37, 0.92);
+  backdrop-filter: blur(10px);
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-width: none;
+
+  animation: navReveal 0.5s var(--ease-out) 0.15s both;
+}
+
+@keyframes navReveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Tab list — horizontal flex row ──────────────── */
+.tabList {
+  display: flex;
+  align-items: stretch;
+  padding: 0 40px;
+  min-width: max-content;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Sliding indicator bar ────────────────────────── */
+.indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background: var(--cyan);
+  border-radius: 2px 2px 0 0;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.7);
+  transition:
+    left  0.3s var(--ease-out),
+    width 0.3s var(--ease-out);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── Individual tab button ────────────────────────── */
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 0 22px;
+  height: 52px;
+
+  border: none;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+
+  /* No bottom border — indicator handles active state */
+  border-bottom: 2px solid transparent;
+
+  transition:
+    color            0.2s ease,
+    background-color 0.2s ease;
+}
+
+.tab::before {
+  /* Hover background swell */
+  content: '';
+  position: absolute;
+  inset: 8px 4px;
+  border-radius: 6px;
+  background: rgba(0, 212, 255, 0);
+  transition: background 0.2s ease;
+  pointer-events: none;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab:hover::before {
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -4px;
+  border-radius: 4px;
+}
+
+/* ── Active tab ───────────────────────────────────── */
+.tabActive {
+  color: var(--cyan);
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.45);
+}
+
+.tabActive::before {
+  background: rgba(0, 212, 255, 0.07);
+}
+
+/* ── Icon ─────────────────────────────────────────── */
+.tabIcon {
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.tab:hover .tabIcon {
+  transform: scale(1.15);
+}
+
+.tabActive .tabIcon {
+  filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.8));
+}
+
+/* ── Label ────────────────────────────────────────── */
+.tabLabel {
+  position: relative;
+}
+
+/* ── Active dot — tiny pulsing pip above active tab ── */
+.activeDot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.4; transform: scale(0.6);  }
+}
+
+/* ── Right fade — scroll overflow hint ───────────── */
+.fadeRight {
+  position: absolute;
+  top: 0; right: 0;
+  width: 48px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(7, 21, 37, 0.95));
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .tabList {
+    padding: 0 16px;
+  }
+
+  .tab {
+    padding: 0 14px;
+    height: 46px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    gap: 6px;
+  }
+
+  .tabIcon {
+    font-size: 12px;
+  }
+}

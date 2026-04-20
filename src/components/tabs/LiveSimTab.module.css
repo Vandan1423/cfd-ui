@@ -1,0 +1,332 @@
+/* ═══════════════════════════════════════════════════
+   LiveSimTab.module.css
+═══════════════════════════════════════════════════ */
+
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ── Live indicator ───────────────────────────────── */
+.liveIndicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--green);
+}
+
+.liveDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    animation: blink 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* ── Controls grid ────────────────────────────────── */
+.controlsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 28px;
+    align-items: end;
+}
+
+/* ── Slider group ─────────────────────────────────── */
+.sliderGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sliderMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sliderLabel {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.sliderVal {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(
+        90deg,
+        var(--cyan) 0%,
+        var(--cyan) var(--pct, 0%),
+        var(--border) var(--pct, 0%)
+    );
+}
+
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--cyan);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
+    cursor: grab;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.range::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 1);
+}
+
+.rangeLimits {
+    display: flex;
+    justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    color: var(--muted2);
+    letter-spacing: 0.5px;
+}
+
+/* ── Play group ───────────────────────────────────── */
+.playGroup {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.playBtn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--cyan);
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--cyan);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.2);
+}
+
+.playBtn:hover {
+    background: rgba(0, 212, 255, 0.22);
+    box-shadow: 0 0 28px rgba(0, 212, 255, 0.45);
+    transform: scale(1.06);
+}
+
+.playing {
+    border-color: var(--orange);
+    color: var(--orange);
+    background: rgba(255, 107, 53, 0.1);
+    box-shadow: 0 0 16px rgba(255, 107, 53, 0.25);
+    animation: playPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes playPulse {
+    0%,
+    100% {
+        box-shadow: 0 0 16px rgba(255, 107, 53, 0.25);
+    }
+    50% {
+        box-shadow: 0 0 32px rgba(255, 107, 53, 0.55);
+    }
+}
+
+.tDisplay {
+    font-family: "Orbitron", monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: 2px;
+    margin-top: 4px;
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+}
+
+/* ── Canvas grid ──────────────────────────────────── */
+.canvasGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* ── Canvas wrapper ───────────────────────────────── */
+.canvasWrap {
+    position: relative;
+    background: #010c18;
+    min-height: 340px;
+}
+
+.canvas {
+    display: block;
+    padding-top: 50px;
+    width: 100%;
+    height: 340px;
+}
+
+.canvasTag {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted2);
+    pointer-events: none;
+}
+
+/* ── Wave canvas ──────────────────────────────────── */
+.waveWrap {
+    background: #010c18;
+    min-height: 180px;
+}
+
+.waveCanvas {
+    display: block;
+    width: 100%;
+    height: 180px;
+}
+
+/* ── Info row below sliders ───────────────────────── */
+.infoRow {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+}
+
+.infoChip {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.infoKey {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted2);
+}
+
+.infoVal {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--text);
+    letter-spacing: 0.5px;
+}
+
+/* ── Legend ───────────────────────────────────────── */
+.legend {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    pointer-events: none;
+}
+
+.legendDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 80, 80, 0.9);
+    flex-shrink: 0;
+}
+
+.legendLabel {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+}
+
+/* ── Explainer note ───────────────────────────────── */
+.note {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 20px;
+    background: rgba(0, 212, 255, 0.04);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 8px;
+}
+
+.noteIcon {
+    font-size: 18px;
+    color: var(--cyan);
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.noteText {
+    font-family: "Syne", sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.noteText strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 900px) {
+    .controlsGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .canvasGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .playGroup {
+        flex-direction: row;
+    }
+}

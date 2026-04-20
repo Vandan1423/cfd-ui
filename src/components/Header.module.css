@@ -1,0 +1,284 @@
+/* ═══════════════════════════════════════════════════
+   Header.module.css
+   Depends on CSS variables defined in index.css
+═══════════════════════════════════════════════════ */
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 48px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 18, 40, 0.98) 0%,
+    rgba(3, 11, 20, 0.85) 100%
+  );
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+
+  /* Slide down on mount */
+  animation: headerReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes headerReveal {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Decorative scan line that sweeps across ── */
+.scanLine {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.04) 50%,
+    transparent 100%
+  );
+  animation: scan 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0%   { left: -60%; }
+  100% { left: 160%; }
+}
+
+/* ══════════════════════════════════════
+   LEFT SIDE
+══════════════════════════════════════ */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+/* Logo mark — pulsing bordered box */
+.logoMark {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.logoText {
+  font-family: 'Orbitron', monospace;
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  z-index: 1;
+  position: relative;
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.8);
+}
+
+/* Outer ring with rotating dash animation */
+.logoRing {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--cyan);
+  border-radius: 10px;
+  box-shadow:
+    0 0 18px rgba(0, 212, 255, 0.35),
+    inset 0 0 14px rgba(0, 212, 255, 0.1);
+  animation: pulseBorder 3s ease-in-out infinite;
+}
+
+.logoRing::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 13px;
+  animation: rotateDash 8s linear infinite;
+  border-style: dashed;
+}
+
+@keyframes pulseBorder {
+  0%, 100% {
+    box-shadow:
+      0 0 18px rgba(0, 212, 255, 0.35),
+      inset 0 0 14px rgba(0, 212, 255, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 32px rgba(0, 212, 255, 0.6),
+      inset 0 0 20px rgba(0, 212, 255, 0.2);
+  }
+}
+
+@keyframes rotateDash {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Title block */
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(20px, 2vw, 25px);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 0;
+
+  /* Subtle text shimmer */
+  background: linear-gradient(
+    90deg,
+    var(--white) 0%,
+    rgba(200, 224, 244, 0.85) 50%,
+    var(--white) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% center; }
+  to   { background-position: -200% center; }
+}
+
+.subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 1.2px;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════
+   RIGHT SIDE
+══════════════════════════════════════ */
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* Badges row */
+.badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.badge {
+  padding: 5px 13px;
+  border: 1px solid;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.badge:hover {
+  transform: translateY(-1px);
+}
+
+.badge_cyan {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0, 212, 255, 0.08);
+}
+.badge_cyan:hover {
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.3);
+}
+
+.badge_green {
+  border-color: var(--green);
+  color: var(--green);
+  background: rgba(0, 255, 157, 0.08);
+}
+.badge_green:hover {
+  box-shadow: 0 0 14px rgba(0, 255, 157, 0.3);
+}
+
+.badge_orange {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: rgba(255, 107, 53, 0.08);
+}
+.badge_orange:hover {
+  box-shadow: 0 0 14px rgba(255, 107, 53, 0.3);
+}
+
+/* Status indicator */
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: blink 2.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 8px var(--green); }
+  50%       { opacity: 0.3; box-shadow: none; }
+}
+
+.statusLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .right {
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .badges {
+    justify-content: flex-start;
+  }
+}

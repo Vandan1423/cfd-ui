@@ -1,0 +1,198 @@
+/* ═══════════════════════════════════════════════════
+   OverviewTab.module.css
+═══════════════════════════════════════════════════ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Metrics ──────────────────────────────────────── */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* ── Main images ──────────────────────────────────── */
+.imagesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.imgBody {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.imgNote {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ── Bottom grid ──────────────────────────────────── */
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── Team list ────────────────────────────────────── */
+.teamList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.teamMember {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.teamMember:hover {
+  background: rgba(0, 212, 255, 0.04);
+  border-color: var(--border);
+}
+
+/* Avatar circle */
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+  border: 1.5px solid;
+  transition: box-shadow 0.2s ease;
+}
+
+.teamMember:hover .avatar {
+  box-shadow: 0 0 12px currentColor;
+}
+
+.avatar_cyan   { color: var(--cyan);   background: rgba(0,212,255,0.1);  border-color: var(--cyan);   }
+.avatar_green  { color: var(--green);  background: rgba(0,255,157,0.1);  border-color: var(--green);  }
+.avatar_orange { color: var(--orange); background: rgba(255,107,53,0.1); border-color: var(--orange); }
+.avatar_yellow { color: var(--yellow); background: rgba(255,214,10,0.1); border-color: var(--yellow); }
+
+.memberName {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.memberRole {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* ── Reference block ──────────────────────────────── */
+.refBlock {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.refLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.refValue {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.arxiv {
+  color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+/* ── Specs table ──────────────────────────────────── */
+.specList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+
+.specRow:last-child {
+  border-bottom: none;
+}
+
+.specRow:hover {
+  background: rgba(0, 212, 255, 0.03);
+  margin: 0 -20px;
+  padding: 9px 20px;
+}
+
+.specLabel {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.specValue {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+/* last spec row — BC Enforcement — highlight green */
+.specRow:last-child .specValue {
+  color: var(--green);
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .imagesGrid,
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

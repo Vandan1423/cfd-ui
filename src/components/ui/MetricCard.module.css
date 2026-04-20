@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════════
+   MetricCard.module.css
+═══════════════════════════════════════════════════ */
+
+.card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px 20px 18px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Top accent bar ───────────────────────────────── */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: 8px 8px 0 0;
+  transition: box-shadow 0.25s ease;
+}
+
+/* ── Corner watermark number ──────────────────────── */
+.card::after {
+  content: attr(data-index);
+  position: absolute;
+  bottom: 8px; right: 12px;
+  font-family: 'Orbitron', monospace;
+  font-size: 48px;
+  font-weight: 900;
+  opacity: 0.04;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ── Accent variants ──────────────────────────────── */
+.accent_cyan {
+  --_accent: var(--cyan);
+  --_glow:   rgba(0, 212, 255, 0.25);
+}
+.accent_green {
+  --_accent: var(--green);
+  --_glow:   rgba(0, 255, 157, 0.25);
+}
+.accent_orange {
+  --_accent: var(--orange);
+  --_glow:   rgba(255, 107, 53, 0.25);
+}
+.accent_yellow {
+  --_accent: var(--yellow);
+  --_glow:   rgba(255, 214, 10, 0.25);
+}
+
+.accent_cyan::before,
+.accent_green::before,
+.accent_orange::before,
+.accent_yellow::before {
+  background: var(--_accent);
+  box-shadow: 0 0 10px var(--_glow);
+}
+
+.accent_cyan:hover,
+.accent_green:hover,
+.accent_orange:hover,
+.accent_yellow:hover {
+  border-color: var(--_accent);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px var(--_glow);
+}
+
+.accent_cyan:hover::before,
+.accent_green:hover::before,
+.accent_orange:hover::before,
+.accent_yellow:hover::before {
+  box-shadow: 0 0 18px var(--_glow);
+}
+
+/* ── Content ──────────────────────────────────────── */
+.value {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  color: var(--_accent);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px var(--_glow);
+}
+
+.label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.sub {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  color: var(--text);
+  line-height: 1.5;
+  opacity: 0.85;
+}

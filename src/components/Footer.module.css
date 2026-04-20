@@ -1,0 +1,157 @@
+/* ═══════════════════════════════════════════════════
+   Footer.module.css
+   Depends on CSS variables in index.css
+═══════════════════════════════════════════════════ */
+
+.footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 48px;
+  background: rgba(7, 21, 37, 0.95);
+  backdrop-filter: blur(10px);
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+/* ── Glowing top border ───────────────────────────── */
+.borderGlow {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent       0%,
+    var(--border)    15%,
+    var(--cyan2)     50%,
+    var(--border)    85%,
+    transparent      100%
+  );
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+}
+
+/* ── Left — course info ───────────────────────────── */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.course {
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--cyan);
+  letter-spacing: 1.5px;
+}
+
+.divider {
+  color: var(--muted2);
+  font-size: 20px;
+}
+
+.info {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  color: var(--muted);
+  letter-spacing: 0.8px;
+}
+
+/* ── Center — reference tags ──────────────────────── */
+.center {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: rgba(0, 212, 255, 0.03);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.tag:hover {
+  border-color: var(--border2);
+  background: rgba(0, 212, 255, 0.06);
+}
+
+.tagLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted2);
+}
+
+.tagValue {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+/* ── Right — live clock ───────────────────────────── */
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.clockLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted2);
+}
+
+.clock {
+  font-family: 'Orbitron', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .footer {
+    padding: 16px 20px;
+    gap: 14px;
+  }
+
+  .center {
+    display: none;
+  }
+
+  .right {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .left {
+    gap: 6px;
+  }
+
+  .info {
+    font-size: 9px;
+  }
+}

@@ -1,0 +1,160 @@
+/* ═══════════════════════════════════════════════════════
+   index.css — Global foundation
+   Import this once in main.jsx
+═══════════════════════════════════════════════════════ */
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=JetBrains+Mono:wght@300;400;600&family=Syne:wght@400;600;700;800&display=swap");
+
+/* ── CSS Variables ───────────────────────────────────── */
+:root {
+    /* Background layers */
+    --bg: #030b14;
+    --panel: #071525;
+    --panel2: #0a1e35;
+
+    /* Borders */
+    --border: #0e3258;
+    --border2: #1a4a7a;
+
+    /* Accent colors */
+    --cyan: #00d4ff;
+    --cyan2: #00aacc;
+    --green: #00ff9d;
+    --orange: #ff6b35;
+    --yellow: #ffd60a;
+    --red: #ff4560;
+
+    /* Text */
+    --white: #ffffff;
+    --text: #c8e0f4;
+    --muted: #4a7090;
+    --muted2: #2a4a60;
+
+    /* Glows */
+    --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
+    --glow-cyan2: 0 0 40px rgba(0, 212, 255, 0.15);
+    --glow-green: 0 0 16px rgba(0, 255, 157, 0.4);
+    --glow-orange: 0 0 16px rgba(255, 107, 53, 0.4);
+
+    /* Timing */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Syne", sans-serif;
+    font-weight: 400;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+/* ── Background effects ──────────────────────────────── */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(
+            ellipse at 15% 50%,
+            rgba(0, 50, 100, 0.18) 0%,
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at 85% 15%,
+            rgba(0, 30, 80, 0.22) 0%,
+            transparent 55%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(0, 100, 60, 0.06) 0%,
+            transparent 50%
+        );
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Subtle grid texture */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 212, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.025) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Everything above the background */
+#root {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ── Typography helpers ──────────────────────────────── */
+.font-orbitron {
+    font-family: "Orbitron", monospace;
+}
+.font-mono {
+    font-family: "JetBrains Mono", monospace;
+}
+.font-syne {
+    font-family: "Syne", sans-serif;
+}
+
+/* ── Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--cyan2);
+}
+
+/* ── Selection ───────────────────────────────────────── */
+::selection {
+    background: rgba(0, 212, 255, 0.25);
+    color: var(--white);
+}
+
+/* ── Utility classes used across components ──────────── */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

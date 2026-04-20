@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════════════
+   Card.module.css
+═══════════════════════════════════════════════════ */
+
+.card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--border2);
+}
+
+/* ── Optional accent stripe on top ───────────────── */
+.accent_cyan::before,
+.accent_green::before,
+.accent_orange::before,
+.accent_yellow::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: 8px 8px 0 0;
+}
+
+.accent_cyan::before   { background: var(--cyan);   box-shadow: 0 0 10px rgba(0,212,255,0.5);  }
+.accent_green::before  { background: var(--green);  box-shadow: 0 0 10px rgba(0,255,157,0.5);  }
+.accent_orange::before { background: var(--orange); box-shadow: 0 0 10px rgba(255,107,53,0.5); }
+.accent_yellow::before { background: var(--yellow); box-shadow: 0 0 10px rgba(255,214,10,0.5); }
+
+/* ── Header ───────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0, 212, 255, 0.03);
+}
+
+.title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.badge {
+  flex-shrink: 0;
+}
+
+/* ── Body ─────────────────────────────────────────── */
+.body {
+  padding: 20px;
+}
+
+.noPadding {
+  padding: 0;
+}

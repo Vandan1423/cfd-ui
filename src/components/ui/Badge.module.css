@@ -1,0 +1,52 @@
+/* ═══════════════════════════════════════════════════
+   Badge.module.css
+═══════════════════════════════════════════════════ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border: 1px solid;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.badge:hover {
+  transform: translateY(-1px);
+}
+
+/* ── Variants ─────────────────────────────────────── */
+.cyan {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0, 212, 255, 0.08);
+}
+.cyan:hover { box-shadow: 0 0 12px rgba(0, 212, 255, 0.3); }
+
+.green {
+  border-color: var(--green);
+  color: var(--green);
+  background: rgba(0, 255, 157, 0.08);
+}
+.green:hover { box-shadow: 0 0 12px rgba(0, 255, 157, 0.3); }
+
+.orange {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: rgba(255, 107, 53, 0.08);
+}
+.orange:hover { box-shadow: 0 0 12px rgba(255, 107, 53, 0.3); }
+
+.yellow {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  background: rgba(255, 214, 10, 0.08);
+}
+.yellow:hover { box-shadow: 0 0 12px rgba(255, 214, 10, 0.3); }

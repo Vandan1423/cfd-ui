@@ -1,0 +1,248 @@
+/* ═══════════════════════════════════════════════════
+   AlgoStep.module.css
+═══════════════════════════════════════════════════ */
+
+/* ── Outer container ──────────────────────────────── */
+.step {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.step:hover {
+    border-color: var(--border2);
+}
+
+.open {
+    border-color: rgba(0, 212, 255, 0.35);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.06);
+}
+
+/* ── Header button ────────────────────────────────── */
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.header:hover {
+    background: rgba(0, 212, 255, 0.04);
+}
+
+.open .header {
+    background: rgba(0, 212, 255, 0.06);
+}
+
+.header:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: -3px;
+    border-radius: 6px;
+}
+
+/* ── Number circle ────────────────────────────────── */
+.circle {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circleNum {
+    font-family: "Orbitron", monospace;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--cyan);
+    position: relative;
+    z-index: 1;
+    transition: text-shadow 0.25s ease;
+}
+
+.open .circleNum {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+}
+
+/* Static ring */
+.circleRing {
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid var(--border2);
+    border-radius: 50%;
+    transition: border-color 0.25s ease;
+}
+
+.open .circleRing {
+    border-color: var(--cyan);
+    animation: ringRotate 6s linear infinite;
+    /* Dashed border to make rotation visible */
+    border-style: dashed;
+    border-color: rgba(0, 212, 255, 0.6);
+}
+
+@keyframes ringRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Meta: title + equation ───────────────────────── */
+.meta {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.title {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text);
+    transition: color 0.2s ease;
+}
+
+.open .title {
+    color: var(--white);
+}
+
+.equation {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.2);
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.open .equation {
+    border-color: rgba(0, 212, 255, 0.3);
+    color: var(--cyan);
+}
+
+/* ── Chevron ──────────────────────────────────────── */
+.chevron {
+    font-size: 22px;
+    color: var(--muted);
+    line-height: 1;
+    flex-shrink: 0;
+    transition:
+        transform 0.3s var(--ease-out),
+        color 0.2s ease;
+    /* rotate 90° so › points down by default */
+    transform: rotate(90deg);
+}
+
+.chevronOpen {
+    transform: rotate(270deg);
+    color: var(--cyan);
+}
+
+/* ── Body — height animated via JS ───────────────── */
+.body {
+    transition: height 0.3s var(--ease-out);
+}
+
+/* ── Inner body content ───────────────────────────── */
+.bodyInner {
+    padding: 0 20px 22px 72px; /* left-align with title (36px circle + 16px gap + 20px base) */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Typography inside the body — used by AlgorithmTab */
+.bodyInner p {
+    font-family: "Syne", sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.75;
+}
+
+/* Code block inside accordion body */
+.bodyInner pre,
+.bodyInner code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+}
+
+.bodyInner pre {
+    background: #010c18;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    line-height: 1.65;
+    color: #7ec8e3;
+}
+
+/* Syntax highlight helpers — apply className on span inside pre */
+.bodyInner :global(.kw) {
+    color: var(--cyan);
+}
+.bodyInner :global(.fn) {
+    color: var(--green);
+}
+.bodyInner :global(.cm) {
+    color: var(--muted);
+    font-style: italic;
+}
+.bodyInner :global(.num) {
+    color: var(--yellow);
+}
+.bodyInner :global(.str) {
+    color: var(--orange);
+}
+
+/* Highlight box inside body */
+.bodyInner :global(.highlight) {
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 5px;
+    padding: 12px 16px;
+}
+
+.bodyInner :global(.highlight-title) {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 6px;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+    .bodyInner {
+        padding: 0 16px 18px 16px;
+    }
+
+    .header {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+}

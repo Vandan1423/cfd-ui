@@ -1,0 +1,81 @@
+/* ═══════════════════════════════════════════════════
+   QualityTab.module.css
+═══════════════════════════════════════════════════ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.imgBody {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── Metric explanation rows ──────────────────────── */
+.metricNote {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.noteRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.noteLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--cyan);
+  flex-shrink: 0;
+  padding-top: 2px;
+  width: 28px;
+}
+
+.noteText {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── Stats note ───────────────────────────────────── */
+.statsNote {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 12px 16px;
+  border-left: 2px solid var(--border2);
+  background: rgba(0, 212, 255, 0.03);
+  border-radius: 0 4px 4px 0;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .metricsGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .twoCol      { grid-template-columns: 1fr; }
+  .metricsGrid { grid-template-columns: repeat(2, 1fr); }
+}
