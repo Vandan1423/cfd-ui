@@ -4,7 +4,7 @@ import styles from './ImageFrame.module.css';
  * ImageFrame — image with hover overlay + click to fullscreen
  *
  * Props:
- *   src        (string)  — image path e.g. '/assets/imga.jpeg'
+ *   src        (string)  — image path e.g. '/assets/Imga.jpeg'
  *   alt        (string)  — alt text
  *   caption    (string)  — shown on hover overlay at the bottom
  *   onClick    (fn)      — called when user clicks (pass openModal fn from parent)

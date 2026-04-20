@@ -41,11 +41,11 @@ export default function QualityTab() {
         >
           <div className={styles.imgBody}>
             <ImageFrame
-              src="/assets/imga.jpeg"
+              src="/assets/Imga.jpeg"
               alt="Mesh quality metrics — area change and shape change"
               caption="Area Change f_A | Shape Change f_AR"
               onClick={() => setModal({
-                src:     '/assets/imga.jpeg',
+                src:     '/assets/Imga.jpeg',
                 caption: 'Mesh Quality Metrics — Area Change f_A and Shape Change f_AR (Stein et al. 2003)',
               })}
               minHeight="280px"
