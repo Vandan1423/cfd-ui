@@ -5,7 +5,7 @@ import Badge from "../ui/Badge";
 import Modal from "../ui/Modal";
 import styles from "./QualityTab.module.css";
 import ConceptBox from "../ui/ConceptBox";
-import ConceptGrid from "../ui/ConceptGrid";
+import ConceptGrid from "../ui/Conceptgrid";
 
 /**
  * ════════════════════════════════════════════════════

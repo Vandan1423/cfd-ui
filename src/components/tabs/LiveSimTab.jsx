@@ -3,7 +3,7 @@ import Card from "../ui/Card";
 import Badge from "../ui/Badge";
 import { useLiveCanvas } from "../../hooks/useLiveCanvas";
 import ConceptBox from "../ui/ConceptBox";
-import ConceptGrid from "../ui/ConceptGrid";
+import ConceptGrid from "../ui/Conceptgrid";
 
 import styles from "./LiveSimTab.module.css";
 

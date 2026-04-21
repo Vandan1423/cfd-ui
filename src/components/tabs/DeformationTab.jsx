@@ -8,7 +8,7 @@ import Modal from "../ui/Modal";
 import { useTimePlayer } from "../../hooks/useTimePlayer";
 import { EXAMPLES, getExampleImagePath } from "../../data/examples";
 import ConceptBox from "../ui/ConceptBox";
-import ConceptGrid from "../ui/ConceptGrid";
+import ConceptGrid from "../ui/Conceptgrid";
 
 import styles from "./DeformationTab.module.css";
 

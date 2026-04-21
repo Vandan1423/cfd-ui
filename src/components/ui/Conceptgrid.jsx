@@ -1,4 +1,4 @@
-import styles from "./ConceptGrid.module.css";
+import styles from "./Conceptgrid.module.css";
 
 /**
  * ConceptGrid — lays ConceptBox blocks in a responsive grid

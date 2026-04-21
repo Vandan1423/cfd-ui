@@ -8,7 +8,7 @@ import Modal from "../ui/Modal";
 import styles from "./PipelineTab.module.css";
 import { STAGE1_STEPS, STAGE2_STEPS } from "../../data/pipelineSteps";
 import ConceptBox from "../ui/ConceptBox";
-import ConceptGrid from "../ui/ConceptGrid";
+import ConceptGrid from "../ui/Conceptgrid";
 
 export default function PipelineTab() {
     const [modal, setModal] = useState(null);

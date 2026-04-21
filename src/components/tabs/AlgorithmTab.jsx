@@ -3,7 +3,7 @@ import AlgoStep from "../ui/AlgoStep";
 import Card from "../ui/Card";
 import { ALGO_STEPS, ARCH_SPECS } from "../../data/algoSteps";
 import ConceptBox from "../ui/ConceptBox";
-import ConceptGrid from "../ui/ConceptGrid";
+import ConceptGrid from "../ui/Conceptgrid";
 
 import styles from "./AlgorithmTab.module.css";
 

@@ -8,7 +8,7 @@ import Modal from "../ui/Modal";
 import styles from "./OverviewTab.module.css";
 import { TEAM_MEMBERS } from "../../data/teamMembers";
 import ConceptBox from "../ui/ConceptBox";
-import ConceptGrid from "../ui/ConceptGrid";
+import ConceptGrid from "../ui/Conceptgrid";
 
 const METRICS = [
     {
