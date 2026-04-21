@@ -2,6 +2,8 @@ import SectionHeader from "../ui/SectionHeader";
 import AlgoStep from "../ui/AlgoStep";
 import Card from "../ui/Card";
 import { ALGO_STEPS, ARCH_SPECS } from "../../data/algoSteps";
+import ConceptBox from "../ui/ConceptBox";
+import ConceptGrid from "../ui/ConceptGrid";
 
 import styles from "./AlgorithmTab.module.css";
 
@@ -192,6 +194,62 @@ export default function AlgorithmTab() {
                     </Card>
                 </div>
             </div>
+
+            {/* ── Conceptual content — full width below accordion+sidebar ── */}
+            <ConceptGrid cols={3}>
+                <ConceptBox variant="theory" title="Why Tanh Activation?">
+                    <p>
+                        Tanh produces smooth, infinitely differentiable outputs.
+                        This is critical because the Laplacian loss requires
+                        computing second-order derivatives of the network output
+                        via autograd. ReLU networks have zero second derivatives
+                        almost everywhere and cannot represent smooth harmonic
+                        functions.
+                    </p>
+                </ConceptBox>
+
+                <ConceptBox
+                    variant="equation"
+                    title="Laplacian Loss via Autograd"
+                >
+                    <code>∂u/∂x, ∂u/∂y = autograd(u, xy)</code>
+                    <code>∂²u/∂x² = autograd(∂u/∂x, xy)</code>
+                    <code>∂²u/∂y² = autograd(∂u/∂y, xy)</code>
+                    <code>L_PDE = mean( (∂²u/∂x² + ∂²u/∂y²)² )</code>
+                    <p>
+                        PyTorch create_graph=True enables second-order gradient
+                        computation.
+                    </p>
+                </ConceptBox>
+
+                <ConceptBox
+                    variant="methodology"
+                    title="Training Stability Tips"
+                >
+                    <ol>
+                        <li>
+                            Xavier initialisation prevents vanishing/exploding
+                            gradients
+                        </li>
+                        <li>
+                            StepLR scheduler reduces LR by 0.7× every N/4
+                            iterations
+                        </li>
+                        <li>
+                            BC weight λ=25 must be tuned — too high slows PDE
+                            convergence
+                        </li>
+                        <li>
+                            Collocation points randomly sampled in interior each
+                            forward pass
+                        </li>
+                        <li>
+                            Warm starting from previous timestep cuts iterations
+                            by ~3×
+                        </li>
+                    </ol>
+                </ConceptBox>
+            </ConceptGrid>
         </div>
     );
 }

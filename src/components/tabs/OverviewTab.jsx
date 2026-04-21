@@ -7,6 +7,8 @@ import Badge from "../ui/Badge";
 import Modal from "../ui/Modal";
 import styles from "./OverviewTab.module.css";
 import { TEAM_MEMBERS } from "../../data/teamMembers";
+import ConceptBox from "../ui/ConceptBox";
+import ConceptGrid from "../ui/ConceptGrid";
 
 const METRICS = [
     {
@@ -121,6 +123,83 @@ export default function OverviewTab() {
                     </div>
                 </Card>
             </div>
+
+            {/* ── Conceptual content ── */}
+            <ConceptGrid cols={2}>
+                <ConceptBox
+                    variant="theory"
+                    title="What is PINN-Based Grid Generation?"
+                >
+                    <p>
+                        A Physics-Informed Neural Network (PINN) embeds the
+                        governing PDE directly into its loss function. Instead
+                        of learning from labelled data, it minimises the
+                        residual of Laplace's equations — ∇²x = 0 and ∇²y = 0 —
+                        across the computational domain, producing mappings that
+                        are guaranteed to be smooth by the physics of harmonic
+                        functions.
+                    </p>
+                </ConceptBox>
+
+                <ConceptBox
+                    variant="takeaway"
+                    title="Why This Approach Matters"
+                >
+                    <p>
+                        Traditional algebraic methods (TFI) produce the
+                        boundary-conforming grid but leave interior smoothness
+                        uncontrolled. The PINN correction term D·NN(ξ,η) — where
+                        D vanishes on the boundary — refines the interior while
+                        keeping boundary conditions exactly satisfied. This
+                        guarantees zero inverted elements even under significant
+                        boundary deformation.
+                    </p>
+                </ConceptBox>
+
+                <ConceptBox
+                    variant="equation"
+                    title="Governing Equations — Winslow / Laplace Mapping"
+                >
+                    <p>Laplace's equations for the (ξ,η) → (x,y) mapping:</p>
+                    <code>∇²x = ∂²x/∂ξ² + ∂²x/∂η² = 0</code>
+                    <code>∇²y = ∂²y/∂ξ² + ∂²y/∂η² = 0</code>
+                    <p>
+                        Solved subject to Dirichlet boundary conditions
+                        extracted from the 4 sides of the unstructured domain
+                        via arc-length parameterisation.
+                    </p>
+                </ConceptBox>
+
+                <ConceptBox
+                    variant="methodology"
+                    title="Project Methodology — End to End"
+                >
+                    <ol>
+                        <li>
+                            Build unstructured Delaunay mesh of physical domain
+                        </li>
+                        <li>
+                            Extract and parameterise 4 boundary curves by
+                            arc-length
+                        </li>
+                        <li>
+                            Compute TFI particular solution B(ξ,η) for boundary
+                            matching
+                        </li>
+                        <li>
+                            Train Soft-BC PINN → obtain interior smoothing
+                            correction
+                        </li>
+                        <li>
+                            Enforce Hard-BC: final = B + D·NN (D=0 on boundary)
+                        </li>
+                        <li>
+                            Apply time-dependent deformation PINN for moving
+                            boundaries
+                        </li>
+                    </ol>
+                </ConceptBox>
+            </ConceptGrid>
 
             {/* ── Team + Specs ── */}
             <div className={styles.bottomGrid}>

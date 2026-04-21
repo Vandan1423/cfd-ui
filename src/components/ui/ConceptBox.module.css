@@ -1,0 +1,188 @@
+/* ═══════════════════════════════════════════════════
+   ConceptBox.module.css
+═══════════════════════════════════════════════════ */
+
+.box {
+    border-radius: 8px;
+    border: 1px solid;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease;
+}
+
+/* ── Header bar ───────────────────────────────────── */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 18px;
+    border-bottom: 1px solid;
+}
+
+.icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.title {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    flex: 1;
+}
+
+.tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+/* ── Body ─────────────────────────────────────────── */
+.body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Typography inside body */
+.body p {
+    font-family: "Syne", sans-serif;
+    font-size: 13.5px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* Equation line — monospace, larger */
+.body code {
+    display: block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 1.8;
+    padding: 10px 14px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.25);
+    margin: 4px 0;
+}
+
+/* Ordered / unordered lists for methodology steps */
+.body ol,
+.body ul {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.body li {
+    font-family: "Syne", sans-serif;
+    font-size: 13.5px;
+    line-height: 1.65;
+}
+
+/* ══════════════════════════════════════
+   VARIANTS
+══════════════════════════════════════ */
+
+/* Theory — cyan */
+.theory {
+    border-color: rgba(0, 212, 255, 0.25);
+    background: rgba(0, 212, 255, 0.04);
+}
+.theory .header {
+    border-color: rgba(0, 212, 255, 0.15);
+    background: rgba(0, 212, 255, 0.06);
+}
+.theory .icon,
+.theory .title {
+    color: var(--cyan);
+}
+.theory .body p,
+.theory .body li {
+    color: var(--text);
+}
+.theory .body code {
+    color: var(--cyan);
+}
+.theory:hover {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.08);
+}
+
+/* Equation — yellow */
+.equation {
+    border-color: rgba(255, 214, 10, 0.25);
+    background: rgba(255, 214, 10, 0.04);
+}
+.equation .header {
+    border-color: rgba(255, 214, 10, 0.15);
+    background: rgba(255, 214, 10, 0.06);
+}
+.equation .icon,
+.equation .title {
+    color: var(--yellow);
+}
+.equation .body p {
+    color: var(--text);
+}
+.equation .body code {
+    color: var(--yellow);
+    font-size: 15px;
+    letter-spacing: 0.8px;
+}
+.equation:hover {
+    box-shadow: 0 0 20px rgba(255, 214, 10, 0.08);
+}
+
+/* Takeaway — green */
+.takeaway {
+    border-color: rgba(0, 255, 157, 0.25);
+    background: rgba(0, 255, 157, 0.04);
+}
+.takeaway .header {
+    border-color: rgba(0, 255, 157, 0.15);
+    background: rgba(0, 255, 157, 0.06);
+}
+.takeaway .icon,
+.takeaway .title {
+    color: var(--green);
+}
+.takeaway .body p,
+.takeaway .body li {
+    color: var(--text);
+}
+.takeaway .body code {
+    color: var(--green);
+}
+.takeaway:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.08);
+}
+
+/* Methodology — orange */
+.methodology {
+    border-color: rgba(255, 107, 53, 0.25);
+    background: rgba(255, 107, 53, 0.04);
+}
+.methodology .header {
+    border-color: rgba(255, 107, 53, 0.15);
+    background: rgba(255, 107, 53, 0.06);
+}
+.methodology .icon,
+.methodology .title {
+    color: var(--orange);
+}
+.methodology .body p,
+.methodology .body li {
+    color: var(--text);
+}
+.methodology .body code {
+    color: var(--orange);
+}
+.methodology:hover {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.08);
+}

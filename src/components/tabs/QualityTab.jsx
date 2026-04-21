@@ -4,6 +4,8 @@ import ImageFrame from "../ui/ImageFrame";
 import Badge from "../ui/Badge";
 import Modal from "../ui/Modal";
 import styles from "./QualityTab.module.css";
+import ConceptBox from "../ui/ConceptBox";
+import ConceptGrid from "../ui/ConceptGrid";
 
 /**
  * ════════════════════════════════════════════════════
@@ -193,6 +195,76 @@ export default function QualityTab() {
                     </button>
                 ))}
             </div>
+
+            {/* ── Conceptual content ── */}
+            <ConceptGrid cols={2}>
+                <ConceptBox
+                    variant="theory"
+                    title="Stein et al. 2003 Quality Metrics"
+                >
+                    <p>
+                        Two scalar metrics quantify mesh quality per triangle.
+                        f_A measures area change relative to the original; f_AR
+                        measures shape distortion via the aspect ratio. Both are
+                        normalised so that f = 0 indicates a perfect element and
+                        larger values indicate increasing distortion.
+                    </p>
+                </ConceptBox>
+
+                <ConceptBox
+                    variant="equation"
+                    title="Quality Metric Definitions"
+                >
+                    <code>f_A = |A_new − A_old| / A_old</code>
+                    <code>
+                        f_AR = (longest edge) / (shortest edge) per triangle
+                    </code>
+                    <code>θ_min = minimum interior angle per triangle</code>
+                    <p>
+                        A valid mesh requires all signed areas positive (no
+                        inverted triangles) and θ_min {">"} 0° for all elements.
+                    </p>
+                </ConceptBox>
+
+                <ConceptBox
+                    variant="methodology"
+                    title="How Quality Was Evaluated"
+                >
+                    <ol>
+                        <li>
+                            Run deformation PINN at each of 11 timesteps (t = 0
+                            to 1)
+                        </li>
+                        <li>
+                            Compute signed triangle areas using cross product
+                            formula
+                        </li>
+                        <li>
+                            Assert all areas positive — zero inverted elements
+                            at all steps
+                        </li>
+                        <li>
+                            Compute f_A, aspect ratio, and min angle per element
+                        </li>
+                        <li>
+                            Plot spatial heatmaps at t = 0, 0.2, 0.4, 0.6, 0.8,
+                            1.0
+                        </li>
+                    </ol>
+                </ConceptBox>
+
+                <ConceptBox variant="takeaway" title="Key Quality Findings">
+                    <p>
+                        Zero inverted elements across all 11 timesteps confirms
+                        the Hard-BC PINN produces topologically valid meshes
+                        throughout the deformation cycle. The worst-case ~0.02°
+                        minimum angle and 28.50 peak aspect ratio occur only in
+                        corner regions at peak deformation — the bulk of the
+                        interior remains well-conditioned with typical min angle
+                        ~43°.
+                    </p>
+                </ConceptBox>
+            </ConceptGrid>
 
             {/* ── Active panel ── */}
             <div className={styles.panel}>
