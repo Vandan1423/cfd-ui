@@ -1,4 +1,5 @@
 import { useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './Modal.module.css';
 
 /**
@@ -23,20 +24,22 @@ export default function Modal({ src, caption, onClose }) {
   }, [onClose]);
 
   useEffect(() => {
-    if (isOpen) {
-      document.addEventListener('keydown', handleKey);
-      // Prevent body scroll while open
-      document.body.style.overflow = 'hidden';
-    }
+    if (!isOpen) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    document.addEventListener('keydown', handleKey);
+    // Prevent body scroll while open
+    document.body.style.overflow = 'hidden';
+
     return () => {
       document.removeEventListener('keydown', handleKey);
-      document.body.style.overflow = '';
+      document.body.style.overflow = previousOverflow;
     };
   }, [isOpen, handleKey]);
 
   if (!isOpen) return null;
 
-  return (
+  const modalContent = (
     <div
       className={styles.overlay}
       onClick={onClose}
@@ -76,4 +79,6 @@ export default function Modal({ src, caption, onClose }) {
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 }

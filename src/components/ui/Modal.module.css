@@ -12,7 +12,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 32px;
+  padding: clamp(16px, 3vw, 40px);
+  overflow: auto;
   animation: backdropIn 0.2s ease both;
 }
 
@@ -24,8 +25,8 @@
 /* ── Content box ──────────────────────────────────── */
 .content {
   position: relative;
-  max-width: 1100px;
-  width: 100%;
+  width: min(100%, 1080px);
+  max-height: calc(100dvh - clamp(32px, 6vw, 80px));
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -70,9 +71,14 @@
 /* ── Image wrapper ────────────────────────────────── */
 .imgWrap {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: min(78dvh, 820px);
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--border2);
+  background: rgba(1, 8, 20, 0.35);
   box-shadow:
     0 0 0 1px var(--border),
     0 40px 80px rgba(0, 0, 0, 0.6),
@@ -80,7 +86,11 @@
 }
 
 .img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
+  max-height: min(74dvh, 760px);
+  height: auto;
+  object-fit: contain;
   display: block;
   border-radius: 6px;
 }

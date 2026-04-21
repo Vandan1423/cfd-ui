@@ -1,81 +1,395 @@
 /* ═══════════════════════════════════════════════════
    QualityTab.module.css
+   Larger fonts throughout — optimised for projector
 ═══════════════════════════════════════════════════ */
 
 .root {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
 }
 
-.metricsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+/* ══════════════════════════════════════
+   SUMMARY CARDS ROW
+══════════════════════════════════════ */
+.summaryRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
 }
 
-.twoCol {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+.summaryCard {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 18px 18px;
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    cursor: default;
 }
 
-.imgBody {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.summaryCard::before {
+    /* Top accent bar colour driven by --card-color */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--card-color);
+    box-shadow: 0 0 12px var(--card-color);
+    border-radius: 10px 10px 0 0;
 }
 
-/* ── Metric explanation rows ──────────────────────── */
-.metricNote {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.summaryCard:hover {
+    transform: translateY(-4px);
+    border-color: var(--card-color);
+    box-shadow:
+        0 10px 32px rgba(0, 0, 0, 0.4),
+        0 0 0 1px var(--card-color);
 }
 
-.noteRow {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
+.summaryIcon {
+    font-size: 22px;
+    color: var(--card-color);
+    line-height: 1;
+    margin-bottom: 10px;
 }
 
-.noteLabel {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: var(--cyan);
-  flex-shrink: 0;
-  padding-top: 2px;
-  width: 28px;
+.summaryVal {
+    font-family: "Orbitron", monospace;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    color: var(--card-color);
+    line-height: 1;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px var(--card-color);
+    letter-spacing: 1px;
 }
 
-.noteText {
-  font-family: 'Syne', sans-serif;
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
+.summaryLabel {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 4px;
 }
 
-/* ── Stats note ───────────────────────────────────── */
-.statsNote {
-  font-family: 'Syne', sans-serif;
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.7;
-  padding: 12px 16px;
-  border-left: 2px solid var(--border2);
-  background: rgba(0, 212, 255, 0.03);
-  border-radius: 0 4px 4px 0;
+.summarySub {
+    font-family: "Syne", sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
 }
 
-/* ── Responsive ───────────────────────────────────── */
-@media (max-width: 1024px) {
-  .metricsGrid { grid-template-columns: repeat(2, 1fr); }
+/* ══════════════════════════════════════
+   PANEL SWITCHER
+══════════════════════════════════════ */
+.switcher {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-@media (max-width: 768px) {
-  .twoCol      { grid-template-columns: 1fr; }
-  .metricsGrid { grid-template-columns: repeat(2, 1fr); }
+.switchBtn {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 24px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    min-width: 160px;
+}
+
+.switchBtn:hover {
+    border-color: var(--border2);
+    background: var(--panel2);
+}
+
+.switchActive {
+    border-color: var(--cyan) !important;
+    background: rgba(0, 212, 255, 0.07) !important;
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.12);
+}
+
+/* Per-accent active colours */
+.switchActive[data-accent="green"] {
+    border-color: var(--green) !important;
+    background: rgba(0, 255, 157, 0.07) !important;
+}
+.switchActive[data-accent="orange"] {
+    border-color: var(--orange) !important;
+    background: rgba(255, 107, 53, 0.07) !important;
+}
+.switchActive[data-accent="cyan"] {
+    border-color: var(--cyan) !important;
+    background: rgba(0, 212, 255, 0.07) !important;
+}
+
+.switchNum {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted2);
+}
+
+.switchLabel {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    transition: color 0.2s ease;
+}
+
+.switchActive .switchLabel {
+    color: var(--white);
+}
+
+/* ══════════════════════════════════════
+   PANEL
+══════════════════════════════════════ */
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    animation: panelIn 0.3s var(--ease-out) both;
+}
+
+@keyframes panelIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Panel top header */
+.panelTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0, 212, 255, 0.025);
+}
+
+.panelTitles {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.panelTitle {
+    font-family: "Orbitron", monospace;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0.5px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.panelSub {
+    font-family: "Syne", sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 680px;
+}
+
+/* Panel body: heatmap grid + sidebar */
+.panelBody {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+}
+
+/* ══════════════════════════════════════
+   HEATMAP GRID — 3 cols × 2 rows
+══════════════════════════════════════ */
+.heatmapGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 24px 24px 24px 28px;
+    border-right: 1px solid var(--border);
+}
+
+.heatmapCell {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.heatmapLabel {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+}
+
+/* ══════════════════════════════════════
+   HEADLINE SIDEBAR — matches PPT panel
+══════════════════════════════════════ */
+.headlineSidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 24px 20px;
+    background: var(--panel2);
+}
+
+.headlineTitle {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+/* Individual metric block inside sidebar */
+.headlineMetric {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.headlineMetric:last-of-type {
+    border-bottom: none;
+}
+
+/* Accent variants for headline metrics */
+.hlVal {
+    font-family: "Orbitron", monospace;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 1px;
+}
+
+.hlLabel {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-top: 2px;
+}
+
+.hlSub {
+    font-family: "Syne", sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* Accent colour per metric */
+.hl_green .hlVal {
+    color: var(--green);
+    text-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+}
+.hl_cyan .hlVal {
+    color: var(--cyan);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+.hl_orange .hlVal {
+    color: var(--orange);
+    text-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+}
+.hl_yellow .hlVal {
+    color: var(--yellow);
+    text-shadow: 0 0 20px rgba(255, 214, 10, 0.4);
+}
+
+/* Explanatory note at bottom of sidebar */
+.headlineNote {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-family: "Syne", sans-serif;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 1100px) {
+    .panelBody {
+        grid-template-columns: 1fr;
+    }
+
+    .headlineSidebar {
+        border-right: none;
+        border-top: 1px solid var(--border);
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .headlineTitle {
+        width: 100%;
+    }
+
+    .headlineMetric {
+        flex: 1;
+        min-width: 140px;
+        border-bottom: none;
+        padding: 0;
+    }
+
+    .headlineNote {
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .summaryRow {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .heatmapGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .panelTop {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .summaryRow {
+        grid-template-columns: 1fr 1fr;
+    }
+    .heatmapGrid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
